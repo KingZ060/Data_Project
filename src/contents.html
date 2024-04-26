@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Planner Generator</title>
+    <style> /* Hide buttons initially */
+        #downloadButton {
+            display: none; 
+        }
+        #copyButton {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Planner Generator</h1>
+        <form id="plannerForm">
+            <label for="task">Tasks and intended time spent:</label>
+            <p>Example inputs:
+                <ul>
+                    <li>"Action" for "time"(in minutes or hours, default 2 hour)</li>
+                    <li>Read for 30 minutes</li>
+                    <li>Exercise for 1 hour</li>
+                    <li>Complete assignment 1</li>
+                </ul>
+            </p>
+            <input type="text" id="task" size="50" required>
+            <br />
+            <input type="checkbox" id="uniqueTimeToggle" onclick="toggleTimeInput()">
+            <label for="uniqueTimeToggle">Have a unique time for that?</label>
+
+            <div id="timeInputForm" style="display: none;">
+                <label for="startTime">Start Time:</label>
+                <input type="time" id="startTime">
+
+                <label for="endTime">End Time:</label>
+                <input type="time" id="endTime">
+            </div>
+            <p><input type="checkbox" id="breakToggle">
+                <label for="breakToggle">Want a break during your work?</label>
+            </p>
+            <p>
+                <button type="button" onclick="addTask()">Add Task</button>
+            </p>
+            <p>
+            <input type="text" id="seed">
+            <label for="seed">Want to set a seed for your this generation?</label>
+            </p>
+            <button type="button" onclick="generateSchedule()">Generate Schedule</button>
+
+
+            
+        </form>
+        <br />
+        <div id="schedule">
+            <h2>Your Daily Schedule</h2>
+            <ul id="taskList"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+    <div id="linkContainer"></div>
+        <button type="button" id="downloadButton" onclick="download()">Download the schedule</button>
+    <div id="linkContainer"></div>
+        <button type="button" id="copyButton" onclick="copy()">Copy the schedule to Clipboard</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+</body>
+</html>
